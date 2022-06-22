@@ -29,7 +29,7 @@ class Property extends Model
 
     public function scopeValidation($value, $request){
         return Validator::make($request, [
-            'title' => 'string | required | max:15 | min:3',
+            'title' => 'string | required | min:3',
             'body' => 'required',
             'category_id' => 'required',
             'location' => 'required',
