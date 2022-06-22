@@ -60,7 +60,7 @@ class Property extends Model
         return self::find($id);
     }
 
-    public function cateogry(){
+    public function category(){
         return $this->belongsTo(Category::class, 'category_id', 'category_id');
     }
 }

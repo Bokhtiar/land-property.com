@@ -79,7 +79,12 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $show = Property::query()->FindId($id);
+            return view('admin.modules.property.show', compact('show'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -114,5 +119,16 @@ class PropertyController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function status($id)
+    {
+        try {
+            $property = Property::query()->FindID($id); //self trait
+            Property::query()->Status($property); // crud trait
+            return redirect()->route('admin.property.index')->with('warning','Property Status Change successfully!');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 }
