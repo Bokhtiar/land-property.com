@@ -10,26 +10,6 @@
       </li><!-- End Dashboard Nav -->
 
       <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#forms-banner" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-journal-text"></i><span>Banner</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="forms-banner" class="nav-content collapse " data-bs-parent="#sidebar-banner">
-          <li>
-            <a href="@route('admin.banner.index')">
-              <i class="bi bi-circle"></i><span>List Of Banner</span>
-            </a>
-          </li>
-          <li>
-            <a href="@route('admin.banner.create')">
-              <i class="bi bi-circle"></i><span>Create Of Banner</span>
-            </a>
-          </li>
-        </ul>
-      </li><!-- End Forms Nav -->
-
-
-
-      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-category" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Category</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
@@ -42,6 +22,26 @@
           <li>
             <a href="@route('admin.category.create')">
               <i class="bi bi-circle"></i><span>Create Of Category</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+
+
+
+      <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-Property" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Property</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-Property" class="nav-content collapse " data-bs-parent="#sidebar-Property">
+          <li>
+            <a href="@route('admin.property.index')">
+              <i class="bi bi-circle"></i><span>List Of Property</span>
+            </a>
+          </li>
+          <li>
+            <a href="@route('admin.property.create')">
+              <i class="bi bi-circle"></i><span>Create Of Property</span>
             </a>
           </li>
         </ul>

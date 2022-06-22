@@ -24,15 +24,17 @@ class Property extends Model
         'category_id',
         'location',
         'phone',
+        'price',
     ];
 
     public function scopeValidation($value, $request){
         return Validator::make($request, [
             'title' => 'string | required | max:15 | min:3',
             'body' => 'required',
-            'category_id',
-            'location',
-            'phone'
+            'category_id' => 'required',
+            'location' => 'required',
+            'phone' => 'required',
+            'price' => 'required',
         ])->validate();
 
     }
@@ -56,5 +58,9 @@ class Property extends Model
     public function scopeFindId($q, $id)
     {
         return self::find($id);
+    }
+
+    public function cateogry(){
+        return $this->belongsTo(Category::class, 'category_id', 'category_id');
     }
 }

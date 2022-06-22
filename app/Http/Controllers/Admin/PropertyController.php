@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
+use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PropertyController extends Controller
 {
@@ -14,7 +17,12 @@ class PropertyController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $properties = Property::latest()->get(['property_id','title', 'status']);
+            return view('admin.modules.property.index', compact('properties'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**
@@ -24,7 +32,8 @@ class PropertyController extends Controller
      */
     public function create()
     {
-        //
+        $categories = Category::query()->latest()->Active()->get(['category_id', 'name']);
+        return view('admin.modules.property.createOrUpdate', compact('categories'));
     }
 
     /**
@@ -35,7 +44,31 @@ class PropertyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = Property::query()->Validation($request->all());
+        if($validated){
+            try{
+                DB::beginTransaction();
+                $image = Property::query()->Image($request);
+                $property = Property::create([
+                    'title' => $request->title,
+                    'body' => $request->body,
+                    'image' => $image,
+                    'category_id' => $request->category_id,
+                    'location' => $request->location,
+                    'phone' => $request->phone,
+                    'price' => $request->price,
+                ]);
+
+                if (!empty($property)) {
+                    DB::commit();
+                    return redirect()->route('admin.property.index')->with('success','Property Created successfully!');
+                }
+                throw new \Exception('Invalid About Information');
+            }catch(\Exception $ex){
+                return back()->withError($ex->getMessage());
+                DB::rollBack();
+            }
+        }
     }
 
     /**
