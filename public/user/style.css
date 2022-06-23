@@ -16,22 +16,22 @@
 }
 /* navbar active section start  */
 
+.avater{
+    height: 40px;
+    width: 40px;
+    border-radius: 20px;
+}
+
 .nav-title{
     color: var(--orange);
     text-decoration: none
 }
 
 
-.navbar-nav>li>a.active,
-.navbar-nav>li>a:focus {
-    margin-top: 7px;
-    line-height: 10px;
-    width: 100%;
-    margin-top: 7px;
-    text-align: center;
-    background-color: var(--yellow);
-    color: var(--black) !important;
-    border-radius: 5px;
+
+
+.navbar-nav>li>a{
+    font-size: 20px;
 }
 
 

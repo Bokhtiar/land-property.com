@@ -3,27 +3,20 @@
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Models\Property;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
-    return view('layouts.user.app');
+    $properties = Property::query()->Active()->get(['property_id', 'image', 'title','category_id']);
+    return view('user.index', compact('properties'));
 });
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('property/list', [App\Http\Controllers\User\PropertyController::class, 'index']);
 
 
 Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],function(){
@@ -35,13 +28,10 @@ Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']]
     /*banner */
     Route::resource('banner', BannerController::class);
     Route::get('banner/status/{id}', [BannerController::class, 'status'])->name('banner.status');
-
     /*category */
     Route::resource('category', CategoryController::class);
     Route::get('category/status/{id}', [CategoryController::class, 'status'])->name('category.status');
     /*Property */
     Route::resource('property', PropertyController::class);
     Route::get('property/status/{id}', [PropertyController::class, 'status'])->name('property.status');
-
-
 });
