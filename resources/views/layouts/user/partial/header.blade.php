@@ -33,12 +33,13 @@
 
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        @auth
+                        @if(Auth::check())
                         <a class="dropdown-item" href="#">Dashboard</a>
                         <a class="dropdown-item" href="#">Logout</a>
-                        @endauth
+                        @else
                         <a class="dropdown-item" href="{{ route('login') }}">Login</a>
                         <a class="dropdown-item" href="{{ route('register') }}">Register</a>
+                        @endif
                     </div>
                 </li>
             </ul>

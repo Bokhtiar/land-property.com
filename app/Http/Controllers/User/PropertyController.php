@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Prophecy\Prophet;
 
 class PropertyController extends Controller
 {
@@ -52,7 +53,12 @@ class PropertyController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $show = Property::query()->FindId($id);
+            return view('user.property.show', compact('show'));
+        } catch (\Throwable $th) {
+            throw $th;
+        }
     }
 
     /**

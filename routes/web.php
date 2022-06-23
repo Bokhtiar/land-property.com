@@ -17,6 +17,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('property/list', [App\Http\Controllers\User\PropertyController::class, 'index']);
+Route::get('property/detail/{id}', [App\Http\Controllers\User\PropertyController::class, 'show']);
 
 
 Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],function(){
