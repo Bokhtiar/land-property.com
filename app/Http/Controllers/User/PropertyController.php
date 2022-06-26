@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\Property;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Prophecy\Prophet;
 
 class PropertyController extends Controller
@@ -17,8 +18,9 @@ class PropertyController extends Controller
     public function index()
     {
         try {
+            $divisions = DB::table('divisions')->get();
             $properties = Property::query()->Active()->get();
-            return view('user.property.list', compact('properties'));
+            return view('user.property.list', compact('properties', 'divisions'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -29,21 +31,16 @@ class PropertyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function property_search(Request $request)
     {
-        //
+        $divisions = DB::table('divisions')->get();
+        $properties = Property::query()->Active()
+                            ->where('division_name', $request->division_name)
+                            ->where('category_id', $request->category_id)
+                            ->get();
+        return view('user.property.list', compact('properties', 'divisions'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -61,37 +58,12 @@ class PropertyController extends Controller
         }
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    public function property_division($name)
     {
-        //
+        $divisions = DB::table('divisions')->get();
+        $properties = Property::query()->Active()->where('division_name', $name)->get();
+        return view('user.property.list', compact('properties','divisions'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
 }

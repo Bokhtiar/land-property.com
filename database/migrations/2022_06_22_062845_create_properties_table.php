@@ -19,6 +19,7 @@ class CreatePropertiesTable extends Migration
             $table->longText('body')->require();
             $table->string('image');
             $table->integer('category_id')->require();
+            $table->string('division_name')->require();
             $table->string('location')->require();
             $table->string('phone')->require();
             $table->integer('price');

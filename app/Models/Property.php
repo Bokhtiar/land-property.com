@@ -25,6 +25,7 @@ class Property extends Model
         'location',
         'phone',
         'price',
+        'division_name',
     ];
 
     public function scopeValidation($value, $request){
@@ -35,6 +36,7 @@ class Property extends Model
             'location' => 'required',
             'phone' => 'required',
             'price' => 'required',
+            'division_name',
         ])->validate();
 
     }

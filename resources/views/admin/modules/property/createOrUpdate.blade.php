@@ -68,12 +68,23 @@
                     @endisset
                 </div>
 
+
                 <div class="col-md-6 col-lg-6 my-2">
                     <label for="" class="form-label">Select Category <span class="text-danger">*</span></label>
                     <select name="category_id" class="form-control" id="">
                        <option value="">Select Category</option>
                        @foreach ($categories as $cat)
                         <option value="{{ $cat->category_id }}" {{ $cat->category_id == @$edit->category_id ? 'Selected' : ''  }}>{{ $cat->name }}</option>
+                       @endforeach
+                    </select>
+                </div>
+
+                <div class="col-md-6 col-lg-6 my-2">
+                    <label for="" class="form-label">Select Divisions <span class="text-danger">*</span></label>
+                    <select name="division_name" class="form-control" id="">
+                       <option value="">Select Divisions</option>
+                       @foreach ($divisions as $div)
+                        <option value="{{ $div->name }}" {{ $div->name == @$edit->division_name ? 'Selected' : ''  }}>{{ $div->name }}</option>
                        @endforeach
                     </select>
                 </div>

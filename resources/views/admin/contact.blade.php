@@ -1,5 +1,5 @@
 @extends('layouts.admin.app')
-@section('title', 'List Of Districts')
+@section('title', 'List Of contact')
 @section('css')
     <style>
         .zoom:hover {
@@ -9,14 +9,13 @@
 @endsection
 
 @section('admin_content')
-
     <div class="pagetitle">
-        <h1>Districts Tables</h1>
+        <h1>Contact Tables</h1>
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="@route('admin.dashboard')">Home</a></li>
                 <li class="breadcrumb-item">Tables</li>
-                <li class="breadcrumb-item active">Districts Table</li>
+                <li class="breadcrumb-item active">Contact Table</li>
             </ol>
         </nav>
     </div><!-- End Page Title -->
@@ -33,26 +32,42 @@
                         @endif
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title">Districts Table   </a>  </h5>
+                        <h5 class="card-title">Contact Table  </h5>
 
                         <!-- Table with stripped rows -->
                         <table class="table datatable">
                             <thead>
                                 <tr>
                                     <th scope="col">SL</th>
-                                    <th class="col">Division Name</th>
                                     <th scope="col">Name</th>
+                                    <th class="col">Email</th>
+                                    <th class="col">Message</th>
+                                    <th scope="col">Status</th>
+                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @forelse ($districts as $item)
+                                @forelse ($contacts as $item)
                                     <tr>
                                         <th scope="row">{{ $loop->index + 1 }}</th>
-                                        <th>{{ $item->division ? $item->division->name : "" }}</th>
                                         <td>{{ $item->name }}</td>
+                                        <td>{{ $item->email }}</td>
+                                        <td>{{ $item->body }}</td>
+
+
+                                        <td>
+                                            @if ($item->status == 1)
+                                                <a class="btn btn-sm btn-success" href="@route('admin.contact.status', $item->contact_id)"><i
+                                                        class="bi bi-check-circle"></i></a>
+                                            @else
+                                                <a class="btn btn-warning btn-sm" href="@route('admin.contact.status', $item->contact_id)"><i
+                                                        class="bi bi-exclamation-triangle"></i></a>
+                                            @endif
+                                        </td>
+
                                     </tr>
                                 @empty
-                                    <h2 class="bg-danger text-light text-center">districts Is empty</h2>
+                                    <h2 class="bg-danger text-light text-center">contact Is empty</h2>
                                 @endforelse
                             </tbody>
                         </table>

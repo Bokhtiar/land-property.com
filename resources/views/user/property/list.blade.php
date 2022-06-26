@@ -18,64 +18,30 @@
         </div>
 
         <div class="row">
-            <div class="col-md-4 col-lg-4 col-12 col-sm-12 my-4">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('i.jpg') }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                    </div>
-                </div>
+            <div class="col-md-3 col-lg-3 col-12 col-sm-12">
+                <ul class="list-group">
+                    @foreach ($divisions as $div)
+                    <li class="list-group-item"><a href="@route('property.division', $div->name)">{{ $div->name }}</a></li>
+                    @endforeach
+                </ul>
             </div>
-
-
-            <div class="col-md-4 col-lg-4 col-12 col-sm-12 my-4">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('i.jpg') }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
+            <div class="col-md-9 col-lg-9 col-12 col-sm-12">
+                <div class="row">
+                    @foreach ($properties as $item)
+                    <div class="col-md-4 col-lg-4 col-12 col-sm-12 my-4">
+                        <div class="card" style="width: 15rem;">
+                            <img class="card-img-top" height="200px" src="{{ asset($item->image) }}" alt="Card image cap">
+                            <div class="card-body">
+                                <h5 class="card-title"><a href="{{ url('property/detail', $item->property_id) }}">{{ $item->title }}</a></h5>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-4 col-lg-4 col-12 col-sm-12 my-4">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('i.jpg') }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-4 col-lg-4 col-12 col-sm-12 my-4">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('i.jpg') }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                    </div>
-                </div>
-            </div>
-
-
-            <div class="col-md-4 col-lg-4 col-12 col-sm-12 my-4">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('i.jpg') }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                    </div>
-                </div>
-            </div>
-
-            <div class="col-md-4 col-lg-4 col-12 col-sm-12 my-4">
-                <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="{{ asset('i.jpg') }}" alt="Card image cap">
-                    <div class="card-body">
-                        <h5 class="card-title">Card title</h5>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>
+
+
 
     </div>
 </section>

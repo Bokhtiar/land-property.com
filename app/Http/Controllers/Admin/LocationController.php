@@ -27,16 +27,3 @@ class LocationController extends Controller
 
 
 }
-
-
-
-
-// $divisions = Division::all();
-// $districts = District::all();
-// $thanas = Thana::all();
-// $union = Union::all();
-
-// $divisions = Division::with('districts')->get(); // districts hasMany
-// $districts = District::with('division','thanas')->get(); //division belongsTo and thanas hasMany
-// $thanas = Thana::with('district','unions')->get(); //district belongsTo and unions hasMany;
-// $union = Union::all();

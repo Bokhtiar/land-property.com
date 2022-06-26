@@ -32,8 +32,9 @@ class PropertyController extends Controller
      */
     public function create()
     {
+        $divisions = DB::table('divisions')->get();
         $categories = Category::query()->latest()->Active()->get(['category_id', 'name']);
-        return view('admin.modules.property.createOrUpdate', compact('categories'));
+        return view('admin.modules.property.createOrUpdate', compact('categories','divisions'));
     }
 
     /**
@@ -57,6 +58,8 @@ class PropertyController extends Controller
                     'location' => $request->location,
                     'phone' => $request->phone,
                     'price' => $request->price,
+                    'division_name' => $request->division_name
+
                 ]);
 
                 if (!empty($property)) {
@@ -97,8 +100,9 @@ class PropertyController extends Controller
     {
         try {
             $categories = Category::query()->Active()->latest()->get(['category_id', 'name']);
+            $divisions = DB::table('divisions')->get();
             $edit = Property::query()->FindId($id);
-            return view('admin.modules.property.createOrUpdate', compact('edit', 'categories'));
+            return view('admin.modules.property.createOrUpdate', compact('edit', 'categories', 'divisions'));
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -132,6 +136,7 @@ class PropertyController extends Controller
                     'location' => $request->location,
                     'phone' => $request->phone,
                     'price' => $request->price,
+                    'division_name' => $request->division_name
                 ]);
 
                 if (!empty($propertyU)) {

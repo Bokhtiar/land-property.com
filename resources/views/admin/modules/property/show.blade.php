@@ -29,6 +29,9 @@
                     <label class="" for="">Category :</label>
                     {{ $show->category ? $show->category->name: '' }}
                     <br>
+                    <label class="" for="">Divisions :</label>
+                    {{ $show->division_name }}
+                    <br>
                     <label for="">Location :</label>
                     {{ $show->location }}
                     <br>

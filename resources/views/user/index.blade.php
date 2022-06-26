@@ -22,33 +22,41 @@
                                 <h6><span class="fa fa-star icon-star mr-3"></span>Locaton && Property</h6>
                             </div>
                             <div class="card-body">
-                                <div class="row px-4 mb-2">
-                                    <div class="col-6 text-center px-0 hotel active">
-                                        <div class=" py-1">
-                                            <select name="" class="form-control" id="">
-                                                <option value="">Select Location</option>
-                                                <option value="">Dhaka</option>
-                                            </select>
+                                <form action="@route('property.search')" method="post">
+                                    @csrf
+                                    <div class="row px-4 mb-2">
+                                        <div class="col-6 text-center px-0 hotel active">
+                                            <div class=" py-1">
+                                                <select name="division_name" class="form-control" id="">
+                                                    <option value="">Select Location</option>
+                                                    @foreach ($divisions as $div)
+                                                    <option value="{{ $div->name }}">{{ $div->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-6 text-center px-0 hotel">
+                                            <div class="block py-1">
+                                                <select name="category_id" class="form-control" id="">
+                                                    <option value="">Select Property</option>
+                                                    @foreach ($categories as $cat)
+                                                    <option value="{{ $cat->category_id }}">{{ $cat->name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-6 text-center px-0 hotel">
-                                        <div class="block py-1">
-                                            <select name="" class="form-control" id="">
-                                                <option value="">Select Property</option>
-                                                <option value="">Land</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
+
                             </div>
                         </div>
 
                     </div>
                     <div class="card-footer bg-white row mx-0 mb-2 justify-content-between">
                         <button class="btn btn-secondary px-4">Cancel</button>
-                        <button class="btn btn-bg ml-auto"><span class="fa fa-filter"></span> &nbsp;&nbsp;Apply
+                        <button type="submit" class="btn btn-bg ml-auto"><span class="fa fa-filter"></span> &nbsp;&nbsp;Apply
                             Filter</button>
                     </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -66,14 +74,14 @@
 
         <div class="d-flex justify-content-between">
             <h4 href="" class="text-uppercase">Property List</h4>
-            <a class="btn btn-bg" href="" class="ml-auto">View All</a>
+            <a class="btn btn-bg" href="@route('property.list')" class="ml-auto">View All</a>
         </div>
 
         <div class="row">
             @foreach ($properties as $property)
             <div class="col-md-4 col-lg-4 col-12 col-sm-12 my-4">
                 <div class="card" style="width: 20rem;">
-                    <img class="card-img-top" src="{{ asset($property->image) }}" alt="Card image cap">
+                    <img class="card-img-top" height="300px" src="{{ asset($property->image) }}" alt="Card image cap">
                     <div class="card-body">
                         <h5 class="card-title">
                             <a href="{{ url('property/detail', $property->property_id) }}">{{ $property->title }}</a></h5>

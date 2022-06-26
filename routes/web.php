@@ -2,23 +2,30 @@
 
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Models\Category;
 use App\Models\Property;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    $properties = Property::query()->Active()->get(['property_id', 'image', 'title','category_id']);
-    return view('user.index', compact('properties'));
+    $divisions = DB::table('divisions')->get();
+    $categories = Category::query()->get();
+    $properties = Property::query()->Active()->get(['property_id', 'image', 'title','category_id'])->take(6);
+    return view('user.index', compact('properties', 'divisions','categories'));
 });
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('property/list', [App\Http\Controllers\User\PropertyController::class, 'index']);
+Route::get('property/list', [App\Http\Controllers\User\PropertyController::class, 'index'])->name('property.list');
 Route::get('property/detail/{id}', [App\Http\Controllers\User\PropertyController::class, 'show']);
+Route::post('property/search', [App\Http\Controllers\User\PropertyController::class, 'property_search'])->name('property.search');
+Route::get('property/division/{id}', [App\Http\Controllers\User\PropertyController::class, 'property_division'])->name('property.division');
 
 
 Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],function(){
@@ -28,7 +35,7 @@ Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],f
 
 Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']],function(){
     Route::get('dashboard', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('dashboard');
-    Route::get('logout', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('logout');
+    Route::get('logout', [App\Http\Controllers\Admin\AdminDashboardController::class, 'logout'])->name('logout');
     Route::get('profile', [App\Http\Controllers\Admin\AdminDashboardController::class, 'profile'])->name('profile');
     /*banner */
     Route::resource('banner', BannerController::class);
@@ -45,6 +52,7 @@ Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']]
         Route::get('division', [LocationController::class, 'division'])->name('division');
         Route::get('districts', [LocationController::class, 'districts'])->name('districts');
     });
-
+    Route::get('contact', [ContactController::class, 'index'])->name('contact');
+    Route::get('contact.status/{id}', [ContactController::class, 'status'])->name('contact.status');
 
 });
