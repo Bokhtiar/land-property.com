@@ -42,8 +42,6 @@
                                     <th scope="col">Name</th>
                                     <th class="col">Email</th>
                                     <th class="col">Message</th>
-                                    <th scope="col">Status</th>
-                                    <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -53,18 +51,6 @@
                                         <td>{{ $item->name }}</td>
                                         <td>{{ $item->email }}</td>
                                         <td>{{ $item->body }}</td>
-
-
-                                        <td>
-                                            @if ($item->status == 1)
-                                                <a class="btn btn-sm btn-success" href="@route('admin.contact.status', $item->contact_id)"><i
-                                                        class="bi bi-check-circle"></i></a>
-                                            @else
-                                                <a class="btn btn-warning btn-sm" href="@route('admin.contact.status', $item->contact_id)"><i
-                                                        class="bi bi-exclamation-triangle"></i></a>
-                                            @endif
-                                        </td>
-
                                     </tr>
                                 @empty
                                     <h2 class="bg-danger text-light text-center">contact Is empty</h2>

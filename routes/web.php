@@ -21,12 +21,14 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
+/*property */
 Route::get('property/list', [App\Http\Controllers\User\PropertyController::class, 'index'])->name('property.list');
 Route::get('property/detail/{id}', [App\Http\Controllers\User\PropertyController::class, 'show']);
 Route::post('property/search', [App\Http\Controllers\User\PropertyController::class, 'property_search'])->name('property.search');
 Route::get('property/division/{id}', [App\Http\Controllers\User\PropertyController::class, 'property_division'])->name('property.division');
 
+/*contact */
+Route::post('contact/store', [App\Http\Controllers\User\ContactController::class, 'store'])->name('contact.store');
 
 Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],function(){
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');

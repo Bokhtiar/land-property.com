@@ -14,7 +14,7 @@
 
         <div class="d-flex justify-content-between">
             <h4 href="" class="text-uppercase">Property List</h4>
-            <a class="btn btn-bg" href="" class="ml-auto">View All</a>
+            <a class="btn btn-bg" href="@route('property.list')" class="ml-auto">View All</a>
         </div>
 
         <div class="row">

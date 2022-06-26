@@ -3,7 +3,7 @@
 @section('css')
 @endsection
 @section('user_content')
-
+<x-notification></x-notification>
  <!--banner section  start-->
  <section class="banner-section-wrapper">
     <div class="container-fluid px-1 px-sm-4 py-5 mx-auto">
@@ -146,7 +146,7 @@
 
             </div>
             <div class="col-sm-8">
-                <form class="md-float-material form-material">
+                <form  action="@route('contact.store')" method="POST" class="md-float-material form-material">
                     <div class="auth-box card">
                         <div class="card-block">
                             <div class="row">
@@ -159,9 +159,11 @@
                                 </div>
                             </div>
                             <div class="row">
+
+                                    @csrf
                                 <div class="col-md-6">
                                     <div class="form-group form-primary">
-                                        <input type="text" name="email" class="form-control text-left"
+                                        <input type="text" name="name" class="form-control text-left"
                                             placeholder="Name" required="">
                                     </div>
                                 </div>
@@ -174,17 +176,18 @@
                                 </div>
                             </div>
                             <div class="form-group form-primary">
-                                <input type="text" name="email" class="form-control text-left"
+                                <input type="text" name="body" class="form-control text-left"
                                     placeholder="Message" required="">
 
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <button type="button"
+                                    <button type="submit"
                                         class="btn btn-primary btn-md btn-block waves-effect text-center m-b-20"><i
                                             class="fa fa-phone"></i> Contact Now </button>
                                 </div>
                             </div>
+
 
                         </div>
                     </div>
