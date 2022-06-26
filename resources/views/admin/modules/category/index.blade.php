@@ -9,7 +9,6 @@
 @endsection
 
 @section('admin_content')
-
     <div class="pagetitle">
         <h1>category Tables</h1>
         <nav>

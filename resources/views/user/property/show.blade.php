@@ -34,6 +34,7 @@
             <h3>Property information</h3>
             <ul>
               <li><strong>Property Title</strong>: {{ $show->title}}</li>
+              <li><strong>Contact-Us</strong>: {{ $show->price}}</li>
               <li><strong>Property Type</strong>: {{ $show->category ? $show->category->name : "Data Not Found" }}</li>
               <li><strong>Property Location</strong>: {{ $show->location}}</li>
               <li><strong>Contact-Us</strong>: {{ $show->phone}}</li>

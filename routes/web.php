@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\LocationController;
 use App\Http\Controllers\Admin\PropertyController;
 use App\Models\Property;
 use Illuminate\Support\Facades\Auth;
@@ -22,10 +23,13 @@ Route::get('property/detail/{id}', [App\Http\Controllers\User\PropertyController
 
 Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],function(){
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
+    Route::get('logout', [App\Http\Controllers\User\UserDashboardController::class, 'logout'])->name('logout');
 });
 
 Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']],function(){
     Route::get('dashboard', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('dashboard');
+    Route::get('logout', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('logout');
+    Route::get('profile', [App\Http\Controllers\Admin\AdminDashboardController::class, 'profile'])->name('profile');
     /*banner */
     Route::resource('banner', BannerController::class);
     Route::get('banner/status/{id}', [BannerController::class, 'status'])->name('banner.status');
@@ -35,4 +39,12 @@ Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']]
     /*Property */
     Route::resource('property', PropertyController::class);
     Route::get('property/status/{id}', [PropertyController::class, 'status'])->name('property.status');
+    //location
+
+    Route::group(["as"=>'location.',"prefix"=>'location'], function(){
+        Route::get('division', [LocationController::class, 'division'])->name('division');
+        Route::get('districts', [LocationController::class, 'districts'])->name('districts');
+    });
+
+
 });
