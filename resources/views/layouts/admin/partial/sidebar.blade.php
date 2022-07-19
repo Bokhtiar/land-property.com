@@ -75,6 +75,20 @@
       </li><!-- End Forms Nav -->
 
       <li class="nav-item">
+        <a class="nav-link collapsed" data-bs-target="#forms-Order" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-journal-text"></i><span>Order</span><i class="bi bi-chevron-down ms-auto"></i>
+        </a>
+        <ul id="forms-Order" class="nav-content collapse " data-bs-parent="#sidebar-Order">
+          <li>
+            <a href="@route('admin.order.list')">
+              <i class="bi bi-circle"></i><span>List Of Order</span>
+            </a>
+          </li>
+        </ul>
+      </li><!-- End Forms Nav -->
+      
+
+      <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#forms-contact" data-bs-toggle="collapse" href="#">
           <i class="bi bi-journal-text"></i><span>Contacts</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>

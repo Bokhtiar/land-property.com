@@ -4,7 +4,9 @@ use App\Http\Controllers\Admin\BannerController;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\LocationController;
+use App\Http\Controllers\Admin\OrderController as AdminOrderController;
 use App\Http\Controllers\Admin\PropertyController;
+use App\Models\Admin\OrderController;
 use App\Models\Category;
 use App\Models\Property;
 use Illuminate\Support\Facades\Auth;
@@ -64,4 +66,9 @@ Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']]
     Route::get('contact', [ContactController::class, 'index'])->name('contact');
     Route::get('contact.status/{id}', [ContactController::class, 'status'])->name('contact.status');
 
+    //order list 
+    Route::get('order/list', [AdminOrderController::class, 'list'])->name('order.list');
+    Route::get('order/detail/{id}', [AdminOrderController::class, 'show']);
+    
+    
 });
