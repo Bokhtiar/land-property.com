@@ -69,6 +69,7 @@ Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']]
     //order list 
     Route::get('order/list', [AdminOrderController::class, 'list'])->name('order.list');
     Route::get('order/detail/{id}', [AdminOrderController::class, 'show']);
+    Route::get('order/status/{id}', [AdminOrderController::class, 'status']);
     
     
 });
