@@ -33,6 +33,8 @@ Route::post('contact/store', [App\Http\Controllers\User\ContactController::class
 Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],function(){
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
     Route::get('logout', [App\Http\Controllers\User\UserDashboardController::class, 'logout'])->name('logout');
+    //carts
+    Route::get('cart/store/{id}', [App\Http\Controllers\User\CartController::class, 'store'])->name('cart.store');
 });
 
 Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']],function(){

@@ -22,6 +22,7 @@ class CreatePropertiesTable extends Migration
             $table->string('division_name')->require();
             $table->string('location')->require();
             $table->string('phone')->require();
+            $table->integer('sell')->default(1);
             $table->integer('price');
             $table->tinyInteger('status')->default(0);
             $table->timestamps();

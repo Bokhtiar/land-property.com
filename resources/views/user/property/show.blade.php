@@ -38,6 +38,7 @@
               <li><strong>Property Type</strong>: {{ $show->category ? $show->category->name : "Data Not Found" }}</li>
               <li><strong>Property Location</strong>: {{ $show->location}}</li>
               <li><strong>Contact-Us</strong>: {{ $show->phone}}</li>
+              <li> <a href="@route('user.cart.store', $show->property_id)" class="btn btn-sm btn-success">Add To Cart</a> </li>
             </ul>
           </div>
           <div class="portfolio-description">

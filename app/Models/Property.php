@@ -24,6 +24,7 @@ class Property extends Model
         'category_id',
         'location',
         'phone',
+        'sell',
         'price',
         'division_name',
     ];
