@@ -17,7 +17,7 @@ class Cart extends Model
         return $this->belongsTo(User::class);
     }
     public function property(){
-        return $this->belongsTo(Property::class);
+        return $this->belongsTo(Property::class, 'property_id', 'property_id');
     }
 
 

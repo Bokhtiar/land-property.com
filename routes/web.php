@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     $divisions = DB::table('divisions')->get();
     $categories = Category::query()->get();
-    $properties = Property::query()->Active()->get(['property_id', 'image', 'title','category_id'])->take(6);
+    $properties = Property::query()->Active()->where('sell', 1)->get(['property_id', 'image', 'title','category_id'])->take(6);
     return view('user.index', compact('properties', 'divisions','categories'));
 });
 Auth::routes();
@@ -35,6 +35,7 @@ Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],f
     Route::get('logout', [App\Http\Controllers\User\UserDashboardController::class, 'logout'])->name('logout');
     //carts
     Route::get('cart/store/{id}', [App\Http\Controllers\User\CartController::class, 'store'])->name('cart.store');
+    Route::get('cart', [App\Http\Controllers\User\CartController::class, 'cart_item'])->name('cart');
 });
 
 Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']],function(){
