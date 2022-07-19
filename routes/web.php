@@ -39,6 +39,7 @@ Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],f
     //order
     Route::get('order', [App\Http\Controllers\User\OrderController::class, 'create'])->name('order');
     Route::post('order/store', [App\Http\Controllers\User\OrderController::class, 'store']);
+    Route::get('order/list', [App\Http\Controllers\User\OrderController::class, 'order_list'])->name('order.list');
 });
 
 Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']],function(){

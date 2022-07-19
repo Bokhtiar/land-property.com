@@ -35,6 +35,7 @@
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         @if(Auth::check())
                         <a class="dropdown-item" href="@route('user.cart')">Cart List</a>
+                        <a class="dropdown-item" href="@route('user.order.list')">Order List</a>
                         <a class="dropdown-item" href="@route('user.logout')">Logout</a>
                         @else
                         <a class="dropdown-item" href="{{ route('login') }}">Login</a>

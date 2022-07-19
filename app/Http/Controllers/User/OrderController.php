@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
+    public function order_list()
+    {
+        $checkouts = Order::where('user_id', Auth::id())->get();
+        return view('user.order.index', compact('checkouts'));
+    }
+
     public function create()
     {
         $carts = Cart::where('user_id',Auth::id())->where('order_id', null)->get();
