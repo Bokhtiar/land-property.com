@@ -40,7 +40,7 @@
 </table>
 <div class="float-right">
     <p style="color:white;" class="btn btn-success text-light"><strong>Total Amount</strong>: {{$total_amount}}Tk</p>
-    <p class="btn btn-info "><strong><a class="text-light" href="{{url('user/checkout/create')}}">Checkout</a> </strong></p>
+    <p class="btn btn-info "><strong><a class="text-light" href="@route('user.order')">Checkout</a> </strong></p>
 </div><br>
 <br><br><br>
 </div>

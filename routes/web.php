@@ -36,6 +36,9 @@ Route::group(["as"=>'user.', "prefix"=>'user',  "middleware"=>['auth','user']],f
     //carts
     Route::get('cart/store/{id}', [App\Http\Controllers\User\CartController::class, 'store'])->name('cart.store');
     Route::get('cart', [App\Http\Controllers\User\CartController::class, 'cart_item'])->name('cart');
+    //order
+    Route::get('order', [App\Http\Controllers\User\OrderController::class, 'create'])->name('order');
+    Route::post('order/store', [App\Http\Controllers\User\OrderController::class, 'store']);
 });
 
 Route::group(["as"=>'admin.', "prefix"=>'admin', "middleware"=>['auth','admin']],function(){

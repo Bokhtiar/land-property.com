@@ -35,13 +35,6 @@ class CartController extends Controller
     }
 
 
-    public function update(Request $request, $id){
-        $quantity = cart::find($id);
-        $quantity['quantity']=$request->quantity;
-        $quantity->save();
-        return back();
-    }
-
     public function delete($id){
         Cart::find($id)->delete();
         return back();
